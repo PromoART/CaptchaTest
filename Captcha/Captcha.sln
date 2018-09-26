@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Captcha", "Captcha\Captcha.csproj", "{452A847B-C8D5-46EC-A730-4DC60B429E47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Captcha.Core", "Captcha.Core\Captcha.Core.csproj", "{A4865503-14FD-4CA0-B761-C20295CD6855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Captcha.Factories", "Captcha.Factory\Captcha.Factories.csproj", "{2662F878-2A75-48AD-830D-3845833DCE89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptchaValidators", "CaptchaValidator\CaptchaValidators.csproj", "{210C98F8-A234-4206-B947-84A1C7304CAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{452A847B-C8D5-46EC-A730-4DC60B429E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{452A847B-C8D5-46EC-A730-4DC60B429E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{452A847B-C8D5-46EC-A730-4DC60B429E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4865503-14FD-4CA0-B761-C20295CD6855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4865503-14FD-4CA0-B761-C20295CD6855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4865503-14FD-4CA0-B761-C20295CD6855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4865503-14FD-4CA0-B761-C20295CD6855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2662F878-2A75-48AD-830D-3845833DCE89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2662F878-2A75-48AD-830D-3845833DCE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2662F878-2A75-48AD-830D-3845833DCE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2662F878-2A75-48AD-830D-3845833DCE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{210C98F8-A234-4206-B947-84A1C7304CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210C98F8-A234-4206-B947-84A1C7304CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210C98F8-A234-4206-B947-84A1C7304CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210C98F8-A234-4206-B947-84A1C7304CAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
