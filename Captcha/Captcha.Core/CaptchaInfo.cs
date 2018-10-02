@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.IO;
 
 namespace Captcha.Core
 {
@@ -6,6 +7,6 @@ namespace Captcha.Core
     {
         public string Text { get; set; }
 
-        public Bitmap Image { get; set; }
+        public MemoryStream Image { get; set; }
     }
 }

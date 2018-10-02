@@ -1,0 +1,21 @@
+﻿@using System.Web.UI.WebControls
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Captcha</title>
+</head>
+
+<body>
+<h2>
+    <span>
+        <img src="data:image/png;base64,@ViewBag.Image"/>
+    </span>
+</h2>
+<h2>@ViewBag.Text</h2>
+</body>
+
+
