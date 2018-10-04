@@ -1,4 +1,4 @@
-﻿@using System.Web.UI.WebControls
+﻿@model Captcha.Models.CaptchaText
 
 @{
     ViewBag.Title = "Index";
@@ -10,12 +10,18 @@
 </head>
 
 <body>
-<h2>
-    <span>
-        <img src="data:image/png;base64,@ViewBag.Image"/>
-    </span>
-</h2>
-<h2>@ViewBag.Text</h2>
+    @using (Html.BeginForm("Validate", "Captcha"))
+    {
+        <p align="center">
+            <img src="data:image/png;base64,@Html.ViewBag.Image" alt="captcha"/>
+        </p>
+        <p align="center">
+            input: @Html.TextBoxFor(x => x.Input)
+        </p>
+        <p align="center">
+            <input type="submit" name="Validate" value="Check" />
+        </p>
+    }
 </body>
 
 

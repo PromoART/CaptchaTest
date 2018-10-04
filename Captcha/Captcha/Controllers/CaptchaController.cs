@@ -1,26 +1,43 @@
 ﻿using System;
 using System.Web.Mvc;
 using Captcha.Core;
+using Captcha.Models;
 
 namespace Captcha.Controllers
 {
     public class CaptchaController : Controller
     {
-        private readonly ICaptchaFactory _captchaFactory;
         private readonly ICaptchaValidator _validator;
+        private readonly CaptchaInfo _captcha;
 
         public CaptchaController(ICaptchaFactory captchaFactory, ICaptchaValidator validator)
         {
-            _captchaFactory = captchaFactory;
+            _captcha = captchaFactory.CreateCaptcha(5);
             _validator = validator;
         }
         // GET: Captcha
+        [HttpGet]
         public ActionResult Index()
         {
-            var captcha = _captchaFactory.CreateCaptcha(5);
-            ViewBag.Text = captcha.Text;
-            ViewBag.Image = Convert.ToBase64String(captcha.Image.ToArray());
+            ViewBag.Image = Convert.ToBase64String(_captcha.Image.ToArray());
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Validate(CaptchaText inputResult)
+        {
+            var result = _validator.Validate(inputResult.Input, inputResult.ToCompare);
+
+            ViewBag.Result = result.ToString();
+            return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _captcha.Image?.Dispose();
+
+            base.Dispose(disposing);
         }
     }
 }

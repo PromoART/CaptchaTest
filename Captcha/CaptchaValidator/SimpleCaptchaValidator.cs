@@ -4,9 +4,9 @@ namespace CaptchaValidator
 {
     public class SimpleCaptchaValidator : ICaptchaValidator
     {
-        public bool Validate(string inputString)
+        public bool Validate(string inputString, string comparisonString)
         {
-            return true;
+            return inputString.ToUpper().Equals(comparisonString.ToUpper());
         }
     }
 }
