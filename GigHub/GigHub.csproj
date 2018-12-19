@@ -204,9 +204,20 @@
     <Compile Include="Migrations\201812191049092_InitialModel.Designer.cs">
       <DependentUpon>201812191049092_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812191210503_CreateGitTable.cs" />
+    <Compile Include="Migrations\201812191210503_CreateGitTable.Designer.cs">
+      <DependentUpon>201812191210503_CreateGitTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812191352116_OvverideAnnotationGigsAndGenres.cs" />
+    <Compile Include="Migrations\201812191352116_OvverideAnnotationGigsAndGenres.Designer.cs">
+      <DependentUpon>201812191352116_OvverideAnnotationGigsAndGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Gig.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -290,6 +301,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812191049092_InitialModel.resx">
       <DependentUpon>201812191049092_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812191210503_CreateGitTable.resx">
+      <DependentUpon>201812191210503_CreateGitTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812191352116_OvverideAnnotationGigsAndGenres.resx">
+      <DependentUpon>201812191352116_OvverideAnnotationGigsAndGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
