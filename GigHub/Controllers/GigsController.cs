@@ -43,12 +43,12 @@ namespace GigHub.Controllers
         {
             var user = User.Identity.GetUserId();
 
-            var artist = _context.FollowAttendances
+            var artists = _context.FollowAttendances
                 .Where(x => x.FollowerId == user)
                 .Select(x => x.Followee)
                 .ToList();
 
-            return View(artist);
+            return View(artists);
         }
 
         [Authorize]
