@@ -28,7 +28,7 @@ span.field-validation-error {
     font-weight: bold;
 }
 
-/*.voffset {
+.voffset {
     margin-top: 2px;
 }
 
@@ -42,15 +42,15 @@ span.field-validation-error {
 
 .voffset3 {
     margin-top: 20px;
-}*/
+}
 
-/*.voffset4 {
+.voffset4 {
     margin-top: 40px;
-}*/
+}
 
-/*.voffset5 {
+.voffset5 {
     margin-top: 80px;
-}*/
+}
 
 /*Bootstrap Ovverides*/
 .navbar-inverse {
