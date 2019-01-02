@@ -4,30 +4,30 @@ using GigHub.DTO;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
 
-namespace GigHub.Controllers
+namespace GigHub.Controllers.Api
 {
     [Authorize]
-    public class AttendancesController : ApiController
+    public class FollowController : ApiController
     {
         private readonly ApplicationDbContext _context;
 
-        public AttendancesController()
+        public FollowController()
         {
             _context = new ApplicationDbContext();
         }
 
         [HttpPost]
-        public IHttpActionResult Attend(AttendanceDto attendance)
+        public IHttpActionResult Follow(FollowDto follow)
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Attendances.Any(x => x.AttendeeId == userId && x.GigId == attendance.GigId))
+            if (_context.FollowAttendances.Any(x => x.FollowerId == userId && x.FolloweeId == follow.FollowId))
                 return BadRequest("The attendance alredy exist");
 
-            _context.Attendances.Add(new Attendance
+            _context.FollowAttendances.Add(new FollowAttendance
             {
-                GigId = attendance.GigId,
-                AttendeeId = userId
+                FolloweeId = follow.FollowId,
+                FollowerId = userId
             });
             _context.SaveChanges();
 

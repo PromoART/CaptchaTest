@@ -22,7 +22,7 @@ namespace GigHub.Controllers
         {
             var user = User.Identity.GetUserId();
             var gigs = _context.Gigs
-                .Where(x => x.ArtistId == user && x.DateTime > DateTime.Now)
+                .Where(x => x.ArtistId == user && x.DateTime > DateTime.Now && !x.IsCanceled)
                 .Include(x => x.Genre)
                 .ToList();
 
@@ -102,13 +102,11 @@ namespace GigHub.Controllers
                 return View("GigForm", viewModel);
             }
 
-            var gig = new Gig
-            {
-                ArtistId = User.Identity.GetUserId(),
-                DateTime = viewModel.GetDateTime(),
-                GenreId = viewModel.Genre,
-                Venue = viewModel.Venue
-            };
+            var gig = new Gig(
+                User.Identity.GetUserId(),
+                viewModel.GetDateTime(),
+                viewModel.Genre,
+                viewModel.Venue);
 
             _context.Gigs.Add(gig);
             _context.SaveChanges();
@@ -128,11 +126,11 @@ namespace GigHub.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var currentGig = _context.Gigs.Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
+            var currentGig = _context.Gigs
+                .Include(x => x.Attendances.Select(z => z.Attendee))
+                .Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
 
-            currentGig.DateTime = viewModel.GetDateTime();
-            currentGig.GenreId = viewModel.Genre;
-            currentGig.Venue = viewModel.Venue;
+            currentGig.Update(viewModel.GetDateTime(), viewModel.Genre, viewModel.Venue);
 
             _context.SaveChanges();
 
