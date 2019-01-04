@@ -12,12 +12,13 @@ namespace GigHub.Models
         private Notification(Gig gig, NotificationType type)
         {
             Gig = gig ?? throw new ArgumentNullException(nameof(gig));
-
+            Id = Guid.NewGuid();
             DateTime = DateTime.Now;
             Type = type;
         }
 
-        public int Id { get; private set; }
+        public Guid Id { get; private set; }
+
         public DateTime DateTime { get; private set; }
         public NotificationType Type { get; private set; }
         public DateTime? OriginalDateTime { get; private set; }
@@ -33,11 +34,12 @@ namespace GigHub.Models
 
         public static Notification GigUpdated(Gig gig, DateTime originDateTime, string originVenue)
         {
-            return new Notification(gig, NotificationType.GigCreated)
+            var notification = new Notification(gig, NotificationType.GigUpdated)
             {
                 OriginalDateTime = originDateTime,
                 OriginalVenue = originVenue
             };
+            return notification;
         }
 
         public static Notification GigCanceled(Gig gig)

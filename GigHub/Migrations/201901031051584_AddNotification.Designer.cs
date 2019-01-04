@@ -13,7 +13,7 @@ namespace GigHub.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201901021033015_AddNotification"; }
+            get { return "201901031051584_AddNotification"; }
         }
         
         string IMigrationMetadata.Source

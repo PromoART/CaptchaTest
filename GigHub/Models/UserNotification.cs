@@ -14,6 +14,9 @@ namespace GigHub.Models
         {
             User = user ?? throw new ArgumentNullException(nameof(user));
             Notifiaction = notifiaction ?? throw new ArgumentNullException(nameof(notifiaction));
+
+            UserId = user.Id;
+            NotificationId = notifiaction.Id.ToString();
         }
 
         [Key]

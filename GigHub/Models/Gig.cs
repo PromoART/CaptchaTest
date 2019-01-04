@@ -13,9 +13,8 @@ namespace GigHub.Models
             Attendances = new Collection<Attendance>();
         }
 
-        public Gig(string userId, DateTime dateTime, byte genre, string venue)
+        public Gig(DateTime dateTime, byte genre, string venue)
         {
-            Id = int.Parse(userId);
             DateTime = dateTime;
             GenreId = genre;
             Venue = venue;
@@ -53,12 +52,14 @@ namespace GigHub.Models
 
         public void Update(DateTime dateTime, byte genreId, string venue)
         {
+            var notification = Notification.GigUpdated(this, DateTime, Venue);
+
+            Venue = venue;
             DateTime = dateTime;
             GenreId = genreId;
-            Venue = venue;
 
             foreach (var attendee in Attendances.Select(x => x.Attendee))
-                attendee.Notify(Notification.GigUpdated(this, DateTime, Venue));
+                attendee.Notify(notification);
         }
     }
 }

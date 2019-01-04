@@ -4,6 +4,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using GigHub.App_Start;
+using GigHub.DTO;
+using GigHub.Models;
 
 namespace GigHub
 {

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using GigHub.Models;
@@ -102,14 +104,26 @@ namespace GigHub.Controllers
                 return View("GigForm", viewModel);
             }
 
-            var gig = new Gig(
-                User.Identity.GetUserId(),
-                viewModel.GetDateTime(),
-                viewModel.Genre,
-                viewModel.Venue);
+            var gig = new Gig(viewModel.GetDateTime(), viewModel.Genre, viewModel.Venue)
+            {
+                ArtistId = User.Identity.GetUserId()
+            };
 
             _context.Gigs.Add(gig);
-            _context.SaveChanges();
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var error in e.EntityValidationErrors)
+                {
+                    Debug.WriteLine(error);
+                }
+
+                throw;
+            }
 
             return RedirectToAction("Mine", "Gigs");
         }
@@ -127,12 +141,24 @@ namespace GigHub.Controllers
 
             var userId = User.Identity.GetUserId();
             var currentGig = _context.Gigs
-                .Include(x => x.Attendances.Select(z => z.Attendee))
-                .Single(x => x.Id == viewModel.Id && x.ArtistId == userId);
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .Single(g => g.Id == viewModel.Id && g.ArtistId == userId);
 
             currentGig.Update(viewModel.GetDateTime(), viewModel.Genre, viewModel.Venue);
 
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var error in e.EntityValidationErrors)
+                {
+                    Debug.WriteLine(error);
+                }
+
+                throw;
+            }
 
             return RedirectToAction("Mine", "Gigs");
         }
